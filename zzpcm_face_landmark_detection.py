@@ -88,8 +88,8 @@ for i in range(10):
             k, d.left(), d.top(), d.right(), d.bottom()))
         # Get the landmarks/parts for the face in box d.
         shape = predictor(img, d)
-        print("Part 0: {}, Part 1: {}, Part 60: {} ...".format(shape.part(0),
-                                                  shape.part(1),shape.part(60)))
+        print("Part 0: {}, Part 1: {}, Part 67: {} ...".format(shape.part(0),
+                                                  shape.part(1),shape.part(67)))
         # Draw the face landmarks on the screen.
         win.add_overlay(shape)
 
