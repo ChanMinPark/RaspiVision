@@ -73,9 +73,9 @@ win = dlib.image_window()
 for i in range(10):
     #print("Processing file: {}".format(f))
     #img = io.imread(f)
+    win.clear_overlay()
     ret, img = cam.read()
 
-    win.clear_overlay()
     win.set_image(img)
 
     # Ask the detector to find the bounding boxes of each face. The 1 in the
