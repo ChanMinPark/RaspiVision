@@ -94,4 +94,4 @@ for i in range(10):
         win.add_overlay(shape)
 
     #win.add_overlay(dets)
-    dlib.hit_enter_to_continue()
+    #dlib.hit_enter_to_continue()
