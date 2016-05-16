@@ -91,7 +91,7 @@ for i in range(10):
         print("Part 0: {}, Part 1: {} ...".format(shape.part(0),
                                                   shape.part(1)))
         # Draw the face landmarks on the screen.
-        win.add_overlay(shape)
+        #win.add_overlay(shape)
 
     #win.add_overlay(dets)
     #dlib.hit_enter_to_continue()
