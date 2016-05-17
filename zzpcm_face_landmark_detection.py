@@ -89,6 +89,7 @@ for i in range(10):
             k, d.left(), d.top(), d.right(), d.bottom()))
         # Get the landmarks/parts for the face in box d.
         shape = predictor(img, d)
+        #there is 68 points in shape variable.(part(0)~part(67))
         print("Part 0: {}, Part 1: {}, Part 67: {} ...".format(shape.part(0),
                                                   shape.part(1),shape.part(67)))
         # Draw the face landmarks on the screen.
