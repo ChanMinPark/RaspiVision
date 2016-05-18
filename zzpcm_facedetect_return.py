@@ -38,6 +38,7 @@ def saveImage(img, s_dir, s_name):
   #To do
   if s_dir[-1:] != "/":
     s_dir = s_dir+'/'
+  print("Save Directory and File name : "+s_dir+s_name)
   cv2.imwrite(s_dir+s_name, img)
 
 def localMode(s_dir, s_name):
