@@ -46,22 +46,22 @@ import sys
 import os
 import dlib
 import glob
-#from skimage import io
+from skimage import io
 import cv2
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     print(
         "Give the path to the trained shape predictor model as the first "
-        "argument.\n"
+        "argument and then the directory containing the facial images.\n"
         "For example, if you are in the python_examples folder then "
         "execute this program by running:\n"
-        "    python face_landmark_detection.py shape_predictor_68_face_landmarks.dat\n"
+        "    python face_landmark_detection.py shape_predictor_68_face_landmarks.dat ../examples/faces\n"
         "You can download a trained facial shape predictor from:\n"
         "    http://sourceforge.net/projects/dclib/files/dlib/v18.10/shape_predictor_68_face_landmarks.dat.bz2")
     exit()
 
 predictor_path = sys.argv[1]
-#faces_folder_path = sys.argv[2]
+faces_folder_path = sys.argv[2]
 
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_FPS, 7)
@@ -70,12 +70,14 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
 win = dlib.image_window()
 
-#for f in glob.glob(os.path.join(faces_folder_path, "*.jpg")):
-for i in range(10):
+for f in glob.glob(os.path.join(faces_folder_path, "zzpcm_faceimg.jpg")):
+#for i in range(10):
     #print("Processing file: {}".format(f))
-    #img = io.imread(f)
+    
     
     ret, img = cam.read()
+    cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg")
+    img = io.imread(f)
     win.clear_overlay()
     win.set_image(img)
 
