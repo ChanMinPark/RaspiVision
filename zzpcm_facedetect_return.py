@@ -26,7 +26,7 @@ def facedetect(img):
   
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
   gray = cv2.equalizeHist(gray)
-  cascade = "../../data/haarcascades/haarcascade_frontalface_alt.xml"
+  cascade = cv2.CascadeClassifier("../../data/haarcascades/haarcascade_frontalface_alt.xml")
   
   rects = detect(gray, cascade)
   if len(rects)!=0:
