@@ -70,6 +70,9 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
 win = dlib.image_window()
 
+ret, img = cam.read()
+cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg")
+
 for f in glob.glob(os.path.join(faces_folder_path, "zzpcm_faceimg.jpg")):
     for i in range(10):
         #print("Processing file: {}".format(f))
