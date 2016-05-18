@@ -62,7 +62,8 @@ def networkMode():
 if __name__ == '__main__':
   print help_message
   
-  args = getopt.getopt(sys.argv[1:], '', ['mode=', 'sdir=', 'sname='])
+  opts, args = getopt.getopt(sys.argv[1:], '', ['mode=', 'sdir=', 'sname='])
+  args = dict(args)
   running_mode = args.get('--mode', 'local')
   save_dir = args.get('--sdir', '../saveImage/')
   save_name = args.get('--sname', 'tempImage.jpg')
