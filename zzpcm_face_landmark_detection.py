@@ -81,7 +81,7 @@ for i in range(10):
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
     ret, frame = cam.read()
-    img = frame
+    img = cv2.cvtColor(frame, cv2.Color_BGR2RGB);
     #cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", frame)
     #img = io.imread(f)
     win.clear_overlay()
