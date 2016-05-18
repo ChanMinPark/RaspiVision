@@ -36,6 +36,9 @@ def facedetect(img):
 
 def saveImage(img, s_dir, s_name):
   #To do
+  if s_dir[-1:] != "/":
+    s_dir = s_dir+'/'
+  cv2.imwrite(s_dir+s_name, img)
 
 def localMode(s_dir, s_name):
   #To do
@@ -46,15 +49,14 @@ def localMode(s_dir, s_name):
   result = facedetect(img)
   
   if result==1:
-    if s_dir[-1:] != "/":
-      s_dir = s_dir+'/'
     print("Save the Image.")
-    cv2.imwrite(s_dir+s_name, img)
+    saveImage(img, s_dir, s_name)
   else:
     print("There is no face. Do nothing.")
 
 def networkMode():
   #To do
+  print("Network Mode On")
 
 
 if __name == '__main__':
