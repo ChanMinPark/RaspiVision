@@ -71,7 +71,7 @@ predictor = dlib.shape_predictor(predictor_path)
 win = dlib.image_window()
 
 ret, img = cam.read()
-cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg")
+cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", img)
 
 for f in glob.glob(os.path.join(faces_folder_path, "zzpcm_faceimg.jpg")):
     for i in range(10):
@@ -79,7 +79,7 @@ for f in glob.glob(os.path.join(faces_folder_path, "zzpcm_faceimg.jpg")):
     
     
         ret, img = cam.read()
-        cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg")
+        cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", img)
         img = io.imread(f)
         win.clear_overlay()
         win.set_image(img)
