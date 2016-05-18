@@ -63,8 +63,9 @@ if len(sys.argv) != 3:
 predictor_path = sys.argv[1]
 faces_folder_path = sys.argv[2]
 
-cam = cv2.VideoCapture(0)
-cam.set(cv2.CAP_PROP_FPS, 1)
+capture = cv2.CaptureFromCAM(0)
+img = cv.QueryFrame(capture)
+#cam.set(cv2.CAP_PROP_FPS, 7)
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
@@ -76,9 +77,9 @@ cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", img)
 for f in glob.glob(os.path.join(faces_folder_path, "zzpcm_faceimg.jpg")):
     for i in range(10):
         #print("Processing file: {}".format(f))
-    
-    
-        ret, img = cam.read()
+        
+        capture = cv2.CaptureFromCAM(0)
+        img = cv2.QueryFrame(capture)
         cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", img)
         img = io.imread(f)
         win.clear_overlay()
