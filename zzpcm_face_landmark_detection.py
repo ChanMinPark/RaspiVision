@@ -63,8 +63,8 @@ if len(sys.argv) != 2:
 predictor_path = sys.argv[1]
 #faces_folder_path = sys.argv[2]
 
-cam = cv2.VideoCapture(0)
-cam.set(cv2.CAP_PROP_FPS, 4)
+#cam = cv2.VideoCapture(0)
+#cam.set(cv2.CAP_PROP_FPS, 7)
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
@@ -78,8 +78,8 @@ for i in range(10):
     #print("Processing file: {}".format(f))
     
     #cv2.VideoCapture.release()
-    #cam = cv2.VideoCapture(0)
-    #cam.set(cv2.CAP_PROP_FPS, 3)
+    cam = cv2.VideoCapture(0)
+    cam.set(cv2.CAP_PROP_FPS, 7)
     ret, frame = cam.read()
     img = frame
     #cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", frame)
@@ -103,6 +103,7 @@ for i in range(10):
                                                  shape.part(1),shape.part(67)))
         # Draw the face landmarks on the screen.
         win.add_overlay(shape)
+        del(cam)
 
     #win.add_overlay(dets)
     dlib.hit_enter_to_continue()
