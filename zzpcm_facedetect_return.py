@@ -59,7 +59,7 @@ def networkMode():
   print("Network Mode On")
 
 
-if __name == '__main__':
+if __name__ == '__main__':
   print help_message
   
   args = getopt.getopt(sys.argv[1:], '', ['mode=', 'sdir=', 'sname='])
