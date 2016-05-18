@@ -82,7 +82,7 @@ for i in range(10):
     # second argument indicates that we should upsample the image 1 time. This
     # will make everything bigger and allow us to detect more faces.
     
-    dets = detector(img, 1)
+    dets = detector(img, 2)
     print("Number of faces detected: {}".format(len(dets)))
     for k, d in enumerate(dets):
         print("Detection {}: Left: {} Top: {} Right: {} Bottom: {}".format(
