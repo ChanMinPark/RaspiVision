@@ -64,7 +64,7 @@ predictor_path = sys.argv[1]
 faces_folder_path = sys.argv[2]
 
 cam = cv2.VideoCapture(0)
-cam.set(cv2.CAP_PROP_FPS, 7)
+cam.set(cv2.CAP_PROP_FPS, 1)
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
