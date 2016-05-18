@@ -81,7 +81,6 @@ for i in range(10):
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
     ret, frame = cam.read()
-    img = frame
     #cv2.imwrite(faces_folder_path+"/zzpcm_faceimg.jpg", frame)
     #img = io.imread(f)
     win.clear_overlay()
@@ -103,7 +102,7 @@ for i in range(10):
                                                  shape.part(1),shape.part(67)))
         # Draw the face landmarks on the screen.
         win.add_overlay(shape)
-        del(cam)
-
+        
+    del(cam)
     #win.add_overlay(dets)
-    dlib.hit_enter_to_continue()
+    #dlib.hit_enter_to_continue()
