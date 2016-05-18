@@ -64,10 +64,10 @@ if __name__ == '__main__':
   print help_message
   
   opts, args = getopt.getopt(sys.argv[1:], '', ['mode=', 'sdir=', 'sname='])
-  args = dict(args)
-  running_mode = args.get('--mode', 'local')
-  save_dir = args.get('--sdir', '../saveImage/')
-  save_name = args.get('--sname', 'tempImage.jpg')
+  opt = dict(opts)
+  running_mode = opt.get('--mode', 'local')
+  save_dir = opt.get('--sdir', '../saveImage/')
+  save_name = opt.get('--sname', 'tempImage.jpg')
   
   if running_mode =='local':
     localMode(save_dir, save_name)
