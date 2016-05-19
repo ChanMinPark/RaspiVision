@@ -3,13 +3,16 @@
 import sys, getopt
 
 import cv2
-import numpy as np
+import numpy
 
 #from video import create_capture
 from common import clock, draw_str
 
+import socket
+
 help_message = '''
 USAGE: zzpcm_facedetect_return.py --mode (local/network) [--sdir <save_dir>] [--sname <save_name>]
+Default : local mode, ../saveImage/, tempImage.jpg
 '''
 
 def detect(img, cascade):
@@ -42,6 +45,16 @@ def saveImage(img, s_dir, s_name):
   print("Save Directory and File name : "+s_dir+s_name)
   cv2.imwrite(s_dir+s_name, img)
 
+def recv_data(sock, count):
+    buf = b''
+    while count:
+        newbuf = sock.recv(count)
+        if not newbuf: return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf
+
+
 def localMode(s_dir, s_name):
   #To do
   print("Local Mode On")
@@ -61,7 +74,37 @@ def localMode(s_dir, s_name):
 def networkMode():
   #To do
   print("Network Mode On")
-
+  
+  ip = 'localhost'
+  port = 10100  #Request-receive port of Camera Device
+  
+  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  s.bind((ip, port))
+  s.listen(True)
+  
+  while True:
+    try:
+      conn, addr = s.accept()
+      msg = recv_data(conn, 7)
+      
+      if msg == 'request':
+        cam = cv2.VideoCapture(0)
+        cam.set(cv2.CAP_PROP_FPS, 7)
+        ret, img = cam.read()
+        
+        encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
+        if facedetect(img)==1:
+          result, imgencode = cv2.imencode('.jpg', img, encode_param)
+          data = numpy.array(imgencode)
+          stringData = data.tostring()
+        else:
+          stringData = 'noface'
+          
+        s.send(str(len(stringData)).ljust(16))
+        s.send(stringData)
+    except KeyboardInterrupt:
+      s.close()
+      sys.exit()
 
 if __name__ == '__main__':
   print help_message
