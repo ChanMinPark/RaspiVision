@@ -13,6 +13,7 @@ USAGE: zzpcm_facedetect_return.py --mode (local/network) [--sdir <save_dir>] [--
 '''
 
 def detect(img, cascade):
+    #call by facedetect
     rects = cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=4, minSize=(30, 30),
                                      flags=cv2.CASCADE_SCALE_IMAGE)
     if len(rects) == 0:
@@ -21,7 +22,7 @@ def detect(img, cascade):
     return rects
 
 def facedetect(img):
-  #To do
+  #Local, Network
   resultflag = 0
   
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -35,7 +36,7 @@ def facedetect(img):
   return resultflag
 
 def saveImage(img, s_dir, s_name):
-  #To do
+  #Local
   if s_dir[-1:] != "/":
     s_dir = s_dir+'/'
   print("Save Directory and File name : "+s_dir+s_name)
@@ -43,6 +44,8 @@ def saveImage(img, s_dir, s_name):
 
 def localMode(s_dir, s_name):
   #To do
+  print("Local Mode On")
+  
   cam = cv2.VideoCapture(0)
   cam.set(cv2.CAP_PROP_FPS, 7)
   ret, img = cam.read()
