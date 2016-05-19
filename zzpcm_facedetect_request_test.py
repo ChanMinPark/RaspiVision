@@ -28,8 +28,8 @@ ss.send('request/'+str(myport))
 
 conn, addr = rs.accept()
 
-length = recvall(conn,16)
-stringData = recvall(conn, int(length))
+length = recv_Data(conn,16)
+stringData = recv_Data(conn, int(length))
 data = numpy.fromstring(stringData, dtype='uint8')
 ss.close()
 rs.close()
