@@ -104,6 +104,8 @@ def networkMode():
         ss.connect((addr[0],int(msg[8:])))
         ss.send(str(len(stringData)).ljust(16))
         ss.send(stringData)
+        
+        del(cam)
     except KeyboardInterrupt:
       s.close()
       ss.close()
