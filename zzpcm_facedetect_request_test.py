@@ -32,8 +32,8 @@ length = recv_Data(conn,16)
 stringData = recv_Data(conn, int(length))
 if stringData != 'noface':
     data = numpy.fromstring(stringData, dtype='uint8')
-    ss.close()
-    rs.close()
+    #ss.close()
+    #rs.close()
     
     decimg=cv2.imdecode(data,1)
     cv2.imshow('SERVER',decimg)
@@ -41,5 +41,8 @@ if stringData != 'noface':
     cv2.destroyAllWindows() 
 else :
     print("There is no face"+stringData)
-    ss.close()
-    rs.close()
+    #ss.close()
+    #rs.close()
+    
+ss.close()
+rs.close()
