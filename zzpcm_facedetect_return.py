@@ -85,9 +85,9 @@ def networkMode():
   while True:
     try:
       conn, addr = s.accept()
-      msg = recv_data(conn, 7)
+      msg = recv_data(conn, 13)
       
-      if msg == 'request':
+      if msg[:7] == 'request':
         cam = cv2.VideoCapture(0)
         cam.set(cv2.CAP_PROP_FPS, 7)
         ret, img = cam.read()
@@ -99,11 +99,14 @@ def networkMode():
           stringData = data.tostring()
         else:
           stringData = 'noface'
-          
-        s.send(str(len(stringData)).ljust(16))
-        s.send(stringData)
+        
+        ss = socket.socket()
+        ss.connect((addr[0],int(msg[8:])))
+        ss.send(str(len(stringData)).ljust(16))
+        ss.send(stringData)
     except KeyboardInterrupt:
       s.close()
+      ss.close()
       sys.exit()
 
 if __name__ == '__main__':
