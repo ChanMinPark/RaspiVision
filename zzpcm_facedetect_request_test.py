@@ -18,7 +18,7 @@ TCP_PORT = 10100
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #s.bind((TCP_IP, TCP_PORT))
 s.connect((TCP_IP, TCP_PORT))
-s.listen(True)
+#s.listen(True)
 
 s.send('request')
 
