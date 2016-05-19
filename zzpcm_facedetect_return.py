@@ -85,7 +85,10 @@ def networkMode():
   while True:
     try:
       conn, addr = s.accept()
+      print("Request is accepted :")
+      print(addr)
       msg = recv_data(conn, 13)
+      print(", msg: "+msg)
       
       if msg[:7] == 'request':
         cam = cv2.VideoCapture(0)
@@ -97,8 +100,10 @@ def networkMode():
           result, imgencode = cv2.imencode('.jpg', img, encode_param)
           data = numpy.array(imgencode)
           stringData = data.tostring()
+          print("Send Image")
         else:
           stringData = 'noface'
+          print("Send nothing.")
         
         ss = socket.socket()
         ss.connect((addr[0],int(msg[8:])))
