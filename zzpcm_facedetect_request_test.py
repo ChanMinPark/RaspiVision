@@ -41,3 +41,5 @@ if stringData != 'noface':
     cv2.destroyAllWindows() 
 else :
     print("There is no face")
+    ss.close()
+    rs.close()
