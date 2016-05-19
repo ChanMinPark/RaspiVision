@@ -12,22 +12,27 @@ def recv_Data(sock, count):
         count -= len(newbuf)
     return buf
 
-TCP_IP = 'localhost'
-TCP_PORT = 10100
+TCP_IP = 'localhost'  #remote ip
+TCP_PORT = 10100      #remote port
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#s.bind((TCP_IP, TCP_PORT))
-s.connect((TCP_IP, TCP_PORT))
-#s.listen(True)
+myip = 'localhost'
+myport = 10200
 
-s.send('request')
+ss = socket.socket()
+ss.connect((TCP_IP, TCP_PORT))
+rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+rs.bind((myip, myport))
+rs.listen(True)
 
-conn, addr = s.accept()
+ss.send('request/'+myport)
+
+conn, addr = rs.accept()
 
 length = recvall(conn,16)
 stringData = recvall(conn, int(length))
 data = numpy.fromstring(stringData, dtype='uint8')
-s.close()
+ss.close()
+rs.close()
 
 decimg=cv2.imdecode(data,1)
 cv2.imshow('SERVER',decimg)
