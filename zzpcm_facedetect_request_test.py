@@ -24,7 +24,7 @@ rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 rs.bind((myip, myport))
 rs.listen(True)
 
-ss.send('request/'+myport)
+ss.send('request/'+str(myport))
 
 conn, addr = rs.accept()
 
