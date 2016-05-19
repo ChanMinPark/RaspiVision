@@ -30,11 +30,14 @@ conn, addr = rs.accept()
 
 length = recv_Data(conn,16)
 stringData = recv_Data(conn, int(length))
-data = numpy.fromstring(stringData, dtype='uint8')
-ss.close()
-rs.close()
-
-decimg=cv2.imdecode(data,1)
-cv2.imshow('SERVER',decimg)
-cv2.waitKey(0)
-cv2.destroyAllWindows() 
+if stringData != 'noface':
+    data = numpy.fromstring(stringData, dtype='uint8')
+    ss.close()
+    rs.close()
+    
+    decimg=cv2.imdecode(data,1)
+    cv2.imshow('SERVER',decimg)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows() 
+else :
+    print("There is no face")
