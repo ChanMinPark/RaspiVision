@@ -17,10 +17,10 @@ import multiprocessing
 model = PredictableModel(Fisherfaces(), NearestNeighbor())
 
 vc=cv2.VideoCapture(0)
-face_cascade = cv2.CascadeClassifier('path to the classifier : haarcascade_frontalface_alt_tree.xml(suggerito)')
+face_cascade = cv2.CascadeClassifier('/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt_tree.xml')
 
 
-#una volta ottenuto (prossimo step) un db di facce, le 
+#비교군으로 사용될 사진들 불러오기
 def read_images(path, sz=(256,256)):
     """Reads the images in a given folder, resizes images on the fly if size is given.
     Args:
@@ -58,17 +58,25 @@ def read_images(path, sz=(256,256)):
 
 
 
+#비교군 얼굴들이 저장된 루트 폴터
+#프로그램 내에서 얼굴을 등록할 때도 사용된다.
+pathdir='/home/pi/Desktop/facerec/data/'
 
-pathdir='prove/'
-#questavolta le facce dello stream
 
 #inizializzazione:
+#여기서는 본인의 얼굴을 face DB에 저장하기 위한 작업인 것 같다.
 quanti = int(raw_input('Quanti siete davanti alla webcam? \n numero:'))
+#얼마나 많은 웹캠? (구글 번역) 아... 몇명이 할거냐고 묻는것 같다. 코드를 봤을때.
 for i in range(quanti):
     nome = raw_input('Ciao utente '+str(i+1)+' qual è il tuo nome?\n nome:')
+    # 사용자 str(i+1) 당신의 이름은 무엇입니까? (구글 번역)
     if not os.path.exists(pathdir+nome): os.makedirs(pathdir+nome)
     print ( 'sei pronto per farmi scattare qualche foto? \n')
+    #촬영 할 준비가 되었습니까? (라고 해석되는거 같다...)
     print ( ' ci vorranno solo 10 secondi\n premi "S" quando sei al centro ')
+    #얼굴이 가운데 있을때 S를 누르세요. 10초면 됩니다.   (라고 해석되는거 같다..)
+    
+    #사용자가 얼굴을 가운데 놓고 s를 누르면 while문을 빠져 나가서 사진을 저장한다.
     while (1):
         ret,frame = vc.read()
 
@@ -83,7 +91,7 @@ for i in range(quanti):
             break
     cv2.destroyAllWindows()
 
-    #comincio a scattare
+    #comincio a scattare = 촬영시작
     start = time.time()
     count = 0
     while int(time.time()-start) <= 14:
