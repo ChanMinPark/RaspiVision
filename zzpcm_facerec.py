@@ -61,8 +61,8 @@ def read_images(path, sz=(256,256)):
 pathdir='/home/pi/Desktop/facerec/data/'
 
 
-menu = int(raw_input('Select main menu ( 1: Register your face and Start, 2: Just Start )'))
-if menu == '1':
+menu = int(raw_input('Select main menu ( 1: Register your face and Start, 2: Just Start ) : '))
+if menu == 1:
     print "Registration process will start."
     #Save my face in Face Database
     name = raw_input('User '+str(i+1)+', What is your name?\n name: ')
@@ -103,7 +103,7 @@ if menu == '1':
         cv2.imshow('Recognition',frame)
         cv2.waitKey(10)
     cv2.destroyAllWindows()
-elif menu=='2':
+elif menu==2:
     print "Program will be started."
 else:
     print "Incorrect menu. Program is terminated."
