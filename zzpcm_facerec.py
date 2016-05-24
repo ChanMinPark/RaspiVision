@@ -8,7 +8,6 @@ import numpy as np
 from PIL import Image
 import sys, os
 import time
-#sys.path.append("../..")
 import cv2
 import multiprocessing
 
@@ -62,12 +61,12 @@ def read_images(path, sz=(256,256)):
 pathdir='/home/pi/Desktop/facerec/data/'
 
 
-#inizializzazione:
-#Save my face in Face Database
-quanti = int(raw_input('How many people on front of webcam? \n number: '))
-for i in range(quanti):
-    nome = raw_input('User '+str(i+1)+', What is your name?\n name: ')
-    if not os.path.exists(pathdir+nome): os.makedirs(pathdir+nome)
+menu = int(raw_input('Select main menu ( 1: Register your face and Start, 2: Just Start )
+if menu == '1':
+    print "Registration process will start."
+    #Save my face in Face Database
+    name = raw_input('User '+str(i+1)+', What is your name?\n name: ')
+    if not os.path.exists(pathdir+name): os.makedirs(pathdir+name)
     print ( 'It will take a photo. Are you ready? \n')
     print ( 'Locate your face in center.\n and then press "s". just 10 seconds.')
     
@@ -104,7 +103,11 @@ for i in range(quanti):
         cv2.imshow('Recognition',frame)
         cv2.waitKey(10)
     cv2.destroyAllWindows()
-
+else if menu=='2':
+    print "Program will be started."
+else:
+    print "Incorrect menu. Program is terminated."
+    exit(0)
 
 print "debug point 1"
 [X,y,subject_names] = read_images(pathdir)
@@ -141,8 +144,6 @@ while (1):
     cv2.imshow('result',img)
     if cv2.waitKey(10) == 27:
         break
-
-
 
 cv2.destroyAllWindows()
 vc.release()
