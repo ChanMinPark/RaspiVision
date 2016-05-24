@@ -61,7 +61,7 @@ def read_images(path, sz=(256,256)):
 pathdir='/home/pi/Desktop/facerec/data/'
 
 
-menu = int(raw_input('Select main menu ( 1: Register your face and Start, 2: Just Start )
+menu = int(raw_input('Select main menu ( 1: Register your face and Start, 2: Just Start )'))
 if menu == '1':
     print "Registration process will start."
     #Save my face in Face Database
