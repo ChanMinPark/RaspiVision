@@ -67,6 +67,7 @@ pathdir='/home/pi/Desktop/facerec/data/'
 #여기서는 본인의 얼굴을 face DB에 저장하기 위한 작업인 것 같다.
 quanti = int(raw_input('Quanti siete davanti alla webcam? \n numero:'))
 #얼마나 많은 웹캠? (구글 번역) 아... 몇명이 할거냐고 묻는것 같다. 코드를 봤을때.
+#웹캠 앞에 몇 명이 있습니까?
 for i in range(quanti):
     nome = raw_input('Ciao utente '+str(i+1)+' qual è il tuo nome?\n nome:')
     # 사용자 str(i+1) 당신의 이름은 무엇입니까? (구글 번역)
