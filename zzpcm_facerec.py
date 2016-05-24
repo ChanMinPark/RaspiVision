@@ -98,8 +98,8 @@ if menu == 1:
             cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
             resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
             if count%5 == 0:
-                print  pathdir+nome+str(time.time()-start)+'.jpg'
-                cv2.imwrite( pathdir+nome+'/'+str(time.time()-start)+'.jpg', resized_image );
+                print  pathdir+name+str(time.time()-start)+'.jpg'
+                cv2.imwrite( pathdir+name+'/'+str(time.time()-start)+'.jpg', resized_image );
         cv2.imshow('Recognition',frame)
         cv2.waitKey(10)
     cv2.destroyAllWindows()
