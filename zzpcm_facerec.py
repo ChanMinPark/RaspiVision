@@ -106,17 +106,21 @@ for i in range(quanti):
     cv2.destroyAllWindows()
 
 
-
+print "test point 1"
 [X,y,subject_names] = read_images(pathdir)
+print "test point 2"
 list_of_labels = list(xrange(max(y)+1))
+print "test point 3"
 
 subject_dictionary = dict(zip(list_of_labels, subject_names))
+print "test point 4"
 model.compute(X,y)
+print "test point 5"
 
 #start main funciton
 while (1):
     rval, frame = vc.read()
-
+    print "test point 6"
 
 
     img = frame
