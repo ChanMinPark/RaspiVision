@@ -17,7 +17,7 @@ import multiprocessing
 model = PredictableModel(Fisherfaces(), NearestNeighbor())
 
 vc=cv2.VideoCapture(0)
-face_cascade = cv2.CascadeClassifier('/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt_tree.xml')
+face_cascade = cv2.CascadeClassifier("/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt_tree.xml")
 
 
 #Load Image in Face Database
