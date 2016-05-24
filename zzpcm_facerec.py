@@ -103,7 +103,7 @@ if menu == '1':
         cv2.imshow('Recognition',frame)
         cv2.waitKey(10)
     cv2.destroyAllWindows()
-else if menu=='2':
+elif menu=='2':
     print "Program will be started."
 else:
     print "Incorrect menu. Program is terminated."
