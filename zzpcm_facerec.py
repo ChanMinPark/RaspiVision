@@ -65,7 +65,7 @@ menu = int(raw_input('Select main menu ( 1: Register your face and Start, 2: Jus
 if menu == 1:
     print "Registration process will start."
     #Save my face in Face Database
-    name = raw_input('User '+str(i+1)+', What is your name?\n name: ')
+    name = raw_input('What is your name?\n name: ')
     if not os.path.exists(pathdir+name): os.makedirs(pathdir+name)
     print ( 'It will take a photo. Are you ready? \n')
     print ( 'Locate your face in center.\n and then press "s". just 10 seconds.')
