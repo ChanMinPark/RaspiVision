@@ -130,12 +130,12 @@ while (1):
         sampleImage = gray[y:y+h, x:x+w]
         sampleImage = cv2.resize(sampleImage, (256,256))
 
-        #capiamo di chi è sta faccia
+        
         [ predicted_label, generic_classifier_output] = model.predict(sampleImage)
         print [ predicted_label, generic_classifier_output]
-        #scelta la soglia a 700. soglia maggiore di 700, accuratezza minore e v.v.
+        
         if int(generic_classifier_output['distances']) <=  700:
-            cv2.putText(img,'tu sei : '+str(subject_dictionary[predicted_label]), (x,y), cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,250),3,1)
+            cv2.putText(img,''+str(subject_dictionary[predicted_label]), (x,y), cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,250),3,1)
     cv2.imshow('result',img)
     if cv2.waitKey(10) == 27:
         break
