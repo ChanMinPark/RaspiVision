@@ -86,7 +86,7 @@ def operation_proc():
                 data = np.array(imgencode)
                 stringData = data.tostring()
                 name="none"
-                metaMsg = 'o/'+str(myport)+str(len(stringData)).ljust(16)+name.ljust(10)
+                metaMsg = 'o/'+str(myport)+'/'+str(len(stringData)).ljust(16)+'/'+name.ljust(10)
                 
                 print("Sending...")
                 ss.send(metaMsg)
