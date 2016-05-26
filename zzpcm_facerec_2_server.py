@@ -121,7 +121,7 @@ while True:
             user_name = metaData[25:]
 
             stringData = recv_Data(conn, length)
-            data = numpy.fromstring(stringData, dtype='uint8')
+            data = np.fromstring(stringData, dtype='uint8')
             decimg=cv2.imdecode(data,1)
             
             if menu=='r':
