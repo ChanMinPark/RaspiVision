@@ -50,7 +50,7 @@ def register_proc(name):
                 result, imgencode = cv2.imencode('.jpg', resized_image, encode_param)
                 data = np.array(imgencode)
                 stringData = data.tostring()
-                metaMsg = 'r/'+str(port)+str(len(stringData)).ljust(16)+name.ljust(10)
+                metaMsg = 'r/'+str(port)+'/'+str(len(stringData)).ljust(16)+'/'+name.ljust(10)
                 
                 ss.send(metaMsg)
                 ss.send(stringData)
