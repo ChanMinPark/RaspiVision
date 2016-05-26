@@ -48,7 +48,7 @@ def register_proc(name):
                 
                 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
                 result, imgencode = cv2.imencode('.jpg', resized_image, encode_param)
-                data = numpy.array(imgencode)
+                data = np.array(imgencode)
                 stringData = data.tostring()
                 metaMsg = 'r/'+str(port)+str(len(stringData)).ljust(16)+name.ljust(10)
                 
@@ -95,7 +95,7 @@ def operation_proc():
                 
                 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
                 result, imgencode = cv2.imencode('.jpg', resized_image, encode_param)
-                data = numpy.array(imgencode)
+                data = np.array(imgencode)
                 stringData = data.tostring()
                 name="none"
                 metaMsg = 'o/'+str(port)+str(len(stringData)).ljust(16)+name.ljust(10)
