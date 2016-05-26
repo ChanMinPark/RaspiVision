@@ -61,7 +61,7 @@ def recv_Data(sock, count):
 
 def save_FaceDB(name, img):
     if not os.path.exists(path+name): os.makedirs(path+name)
-    cv2.imwrite(path+name+'/'+str(random.randrange(100,1000)),img)
+    cv2.imwrite(path+name+'/'+str(random.randrange(100,1000))+'.jpg',img)
     
 def checkFace(origin_img):
     #To do
