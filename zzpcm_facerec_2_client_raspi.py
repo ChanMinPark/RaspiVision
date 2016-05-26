@@ -6,9 +6,10 @@ import numpy as np
 import socket
 import time
 
-
+# This variables must be changed depend on your System.
 face_cascade = cv2.CascadeClassifier("/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt.xml")
-
+serverip = '192.168.0.55'
+serverport = 10200
 
 def recv_data(sock, count):
     buf = b''
@@ -29,7 +30,7 @@ def register_proc(name):
     port = 10100  #My Receive port
 
     ss = socket.socket()
-    ss.connect(('192.168.0.55', 10200))
+    ss.connect((serverip, serverport))
   
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((ip, port))
@@ -75,7 +76,7 @@ def operation_proc():
     port = 10100  #My Receive port
 
     ss = socket.socket()
-    ss.connect(('192.168.0.67', 10200))
+    ss.connect((serverip, serverport))
   
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((ip, port))
