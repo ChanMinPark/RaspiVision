@@ -68,7 +68,7 @@ def register_proc(name):
 
 def operation_proc():
     #To do
-    print("Begin register process.")
+    print("Begin operation process.")
 
     # 'ip'and 'port' must be changed depend on your System.
     ip = '192.168.0.72'
@@ -87,12 +87,14 @@ def operation_proc():
     resultData = "Unknown"
     for count in range(1):
         try:
+            print("Capture...")
             ret, frame = cam.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
             for (x,y,w,h) in faces:
                 resized_image = cv2.resize(frame[y:y+h,x:x+w], (256, 256))
                 
+                print("Encoding...")
                 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
                 result, imgencode = cv2.imencode('.jpg', resized_image, encode_param)
                 data = np.array(imgencode)
@@ -100,6 +102,7 @@ def operation_proc():
                 name="none"
                 metaMsg = 'o/'+str(port)+str(len(stringData)).ljust(16)+name.ljust(10)
                 
+                print("Sending...")
                 ss.send(metaMsg)
                 ss.send(stringData)
 
@@ -110,7 +113,7 @@ def operation_proc():
 
                 con, saddr = rs.accept()
                 resultData = recv_data(con, 10)
-                print resultData
+                print "You are "+resultData
                 
             #time.sleep(1)
         except KeyboardInterrupt:
@@ -118,7 +121,7 @@ def operation_proc():
             ss.close()
             sys.exit()
             
-    print "Register process is end."
+    print "Operation process is end."
     s.close()
     ss.close()
             
