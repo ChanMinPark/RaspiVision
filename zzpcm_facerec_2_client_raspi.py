@@ -127,7 +127,7 @@ if __name__ == '__main__':
     menu = int(raw_input('Select main menu ( 1: Register your face, 2: Start ) : '))
 
     if menu == 1:
-        name = int(raw_input('Enter your name : '))
+        name = raw_input('Enter your name : ')
         if len(name) > 10:
             name = name[:10]
         register_proc(name)
