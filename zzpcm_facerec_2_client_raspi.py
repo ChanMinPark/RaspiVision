@@ -113,7 +113,7 @@ def operation_proc():
 
                 con, saddr = rs.accept()
                 resultData = recv_data(con, 10)
-                print "You are "+resultData
+                print "You are "+resultData.strip()
                 
             #time.sleep(1)
         except KeyboardInterrupt:
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     menu = int(raw_input('Select main menu ( 1: Register your face, 2: Start ) : '))
 
     if menu == 1:
-        name = raw_input('Enter your name : ')
+        name = raw_input('Enter your name (under 10 charcter) : ')
         if len(name) > 10:
             name = name[:10]
         register_proc(name)
