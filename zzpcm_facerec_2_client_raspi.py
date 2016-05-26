@@ -46,7 +46,7 @@ def register_proc(name):
                 result, imgencode = cv2.imencode('.jpg', resized_image, encode_param)
                 data = np.array(imgencode)
                 stringData = data.tostring()
-                metaMsg = 'r/'+str(port)+'/'+str(len(stringData)).ljust(16)+'/'+name.ljust(10)
+                metaMsg = 'r/'+str(12345)+'/'+str(len(stringData)).ljust(16)+'/'+name.ljust(10)
                 
                 ss.send(metaMsg)
                 ss.send(stringData)
@@ -63,10 +63,6 @@ def register_proc(name):
 def operation_proc():
     #To do
     print("Begin operation process.")
-
-    # 'ip'and 'port' must be changed depend on your System.
-    ip = '192.168.0.72'
-    port = 10100  #My Receive port
 
     ss = socket.socket()
     ss.connect((serverip, serverport))
