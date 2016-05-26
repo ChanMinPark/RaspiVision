@@ -29,7 +29,7 @@ def register_proc(name):
     port = 10100  #My Receive port
 
     ss = socket.socket()
-    ss.connect(('192.168.0.67', 10200))
+    ss.connect(('192.168.0.55', 10200))
   
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((ip, port))
