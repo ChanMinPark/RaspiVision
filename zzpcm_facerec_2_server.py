@@ -119,6 +119,7 @@ while True:
             client_port = int(metaData[2:7])
             length = int(metaData[8:24])
             user_name = metaData[25:]
+            user_name = user_name.strip()
 
             stringData = recv_Data(conn, length)
             data = np.fromstring(stringData, dtype='uint8')
