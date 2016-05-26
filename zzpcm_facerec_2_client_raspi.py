@@ -7,7 +7,7 @@ import socket
 import time
 
 
-face_cascade = cv2.CascadeClassifier("[change Dir]/haarcascades/haarcascade_frontalface_alt.xml")
+face_cascade = cv2.CascadeClassifier("/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt.xml")
 
 
 def recv_data(sock, count):
