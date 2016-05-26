@@ -10,6 +10,9 @@ import time
 face_cascade = cv2.CascadeClassifier("/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt.xml")
 serverip = '192.168.0.55'
 serverport = 10200
+# 'ip'and 'port' must be changed depend on your System.
+myip = '192.168.0.72'
+myport = 10100  #My Receive port
 
 def recv_data(sock, count):
     buf = b''
@@ -25,16 +28,8 @@ def register_proc(name):
     #To do
     print("Begin register process.")
 
-    # 'ip'and 'port' must be changed depend on your System.
-    ip = '192.168.0.72'
-    port = 10100  #My Receive port
-
     ss = socket.socket()
     ss.connect((serverip, serverport))
-  
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind((ip, port))
-    s.listen(True)
 
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
@@ -58,12 +53,10 @@ def register_proc(name):
             
             time.sleep(1)
         except KeyboardInterrupt:
-            s.close()
             ss.close()
             sys.exit()
             
     print "Register process is end."
-    s.close()
     ss.close()
 
 
@@ -77,10 +70,6 @@ def operation_proc():
 
     ss = socket.socket()
     ss.connect((serverip, serverport))
-  
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind((ip, port))
-    s.listen(True)
 
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
@@ -118,12 +107,12 @@ def operation_proc():
                 
             #time.sleep(1)
         except KeyboardInterrupt:
-            s.close()
+            rs.close()
             ss.close()
             sys.exit()
             
     print "Operation process is end."
-    s.close()
+    rs.close()
     ss.close()
             
 
