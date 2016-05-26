@@ -40,7 +40,7 @@ def register_proc(name):
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
             for (x,y,w,h) in faces:
-                resized_image = cv2.resize(frame[y:y+h,x:x+w], (256, 256))
+                resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
                 
                 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
                 result, imgencode = cv2.imencode('.jpg', resized_image, encode_param)
