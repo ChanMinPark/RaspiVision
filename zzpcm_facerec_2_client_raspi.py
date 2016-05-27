@@ -78,7 +78,7 @@ def operation_proc():
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
             for (x,y,w,h) in faces:
-                resized_image = cv2.resize(gray[y:y+h,x:x+w], (273, 273))
+                resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
                 
                 print("Encoding...")
                 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
