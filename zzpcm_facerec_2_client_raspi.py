@@ -70,6 +70,9 @@ def register_proc(name):
 def operation_proc():
     #To do
     print("Begin operation process.")
+    
+    ss = socket.socket()
+    rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
@@ -86,7 +89,7 @@ def operation_proc():
             else:
                 print "took a picture"
             for (x,y,w,h) in faces:
-                ss = socket.socket()
+                #ss = socket.socket()
                 ss.connect((serverip, serverport))
                 
                 resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
@@ -103,7 +106,7 @@ def operation_proc():
                 ss.send(metaMsg)
                 ss.send(stringData)
 
-                rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                #rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 rs.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 rs.bind((myip, myport))
                 rs.listen(True)
