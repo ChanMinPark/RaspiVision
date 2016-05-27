@@ -25,18 +25,15 @@ def recv_data(sock, count):
 
 
 def register_proc(name):
-    #To do
     print("Begin register process.")
 
     ss = socket.socket()
     ss.connect((serverip, serverport))
     
-    #for count in range(10):
     count = 0
     while count < 10:
         try:
             cam = cv2.VideoCapture(0)
-            #cam.set(cv2.CAP_PROP_FPS, 7)
             
             ret, frame = cam.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -68,14 +65,12 @@ def register_proc(name):
 
 
 def operation_proc():
-    #To do
     print("Begin operation process.")
     
     ss = socket.socket()
     rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     cam = cv2.VideoCapture(0)
-    cam.set(cv2.CAP_PROP_FPS, 7)
 
     resultData = "Unknown"
     for count in range(1):
@@ -89,7 +84,6 @@ def operation_proc():
             else:
                 print "took a picture"
             for (x,y,w,h) in faces:
-                #ss = socket.socket()
                 ss.connect((serverip, serverport))
                 
                 resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
@@ -106,7 +100,6 @@ def operation_proc():
                 ss.send(metaMsg)
                 ss.send(stringData)
 
-                #rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 rs.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 rs.bind((myip, myport))
                 rs.listen(True)
@@ -115,7 +108,6 @@ def operation_proc():
                 resultData = recv_data(con, 10)
                 print "You are "+resultData.strip()
                 
-            #time.sleep(1)
         except KeyboardInterrupt:
             rs.close()
             ss.close()
@@ -138,6 +130,3 @@ if __name__ == '__main__':
         operation_proc()
     else:
         print "Incorrect menu. Terminate program."
-
-    
-  
