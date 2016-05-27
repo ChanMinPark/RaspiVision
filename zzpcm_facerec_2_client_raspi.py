@@ -30,14 +30,14 @@ def register_proc(name):
 
     ss = socket.socket()
     ss.connect((serverip, serverport))
+    
+    cam = cv2.VideoCapture(0)
+    cam.set(cv2.CAP_PROP_FPS, 7)
 
     #for count in range(10):
     count = 0
     while count < 10:
         try:
-            cam = cv2.VideoCapture(0)
-            cam.set(cv2.CAP_PROP_FPS, 7)
-            
             #ret, frame = cam.read()
             ret, frame = cam.retrieve()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
