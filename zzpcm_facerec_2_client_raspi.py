@@ -31,15 +31,14 @@ def register_proc(name):
     ss = socket.socket()
     ss.connect((serverip, serverport))
     
-    cam = cv2.VideoCapture(0)
-    cam.set(cv2.CAP_PROP_FPS, 7)
-
     #for count in range(10):
     count = 0
     while count < 10:
         try:
-            #ret, frame = cam.read()
-            ret, frame = cam.retrieve()
+            cam = cv2.VideoCapture(0)
+            #cam.set(cv2.CAP_PROP_FPS, 7)
+            
+            ret, frame = cam.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
             if len(faces) == 0:
@@ -58,8 +57,8 @@ def register_proc(name):
                 ss.send(metaMsg)
                 ss.send(stringData)
                 count = count+1
-            #del(cam)
-            time.sleep(1)
+            del(cam)
+            time.sleep(0.5)
         except KeyboardInterrupt:
             ss.close()
             sys.exit()
