@@ -98,7 +98,7 @@ def checkFace(origin_img):
 #TCP_PORT = 10100      #remote port
 
 #'myip'and 'myport' must be changed depend on your System.
-myip = '192.168.0.55'
+myip = '192.168.0.72'
 myport = 10200
 
 rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
