@@ -66,7 +66,6 @@ def save_FaceDB(name, img):
 def checkFace(origin_img):
     #To do
     model = PredictableModel(Fisherfaces(), NearestNeighbor())
-    #face_cascade = cv2.CascadeClassifier("/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt.xml")
     
     result_name = 'unknown'
     
@@ -76,13 +75,7 @@ def checkFace(origin_img):
     model.compute(X,y)
 
     gray = cv2.cvtColor(origin_img, cv2.COLOR_BGR2GRAY)
-    #faces = face_cascade.detectMultiScale(gray, 1.2, 3)
-
-    #for (x,y,w,h) in faces:        
-        #sampleImage = gray[y:y+h, x:x+w]
-        #sampleImage = cv2.resize(sampleImage, (256,256))
     sampleImage = cv2.resize(gray, (256,256))
-
         
     [ predicted_label, generic_classifier_output] = model.predict(sampleImage)
     print [ predicted_label, generic_classifier_output]
@@ -93,10 +86,6 @@ def checkFace(origin_img):
     return result_name
 
 
-
-#TCP_IP = 'localhost'  #remote ip
-#TCP_PORT = 10100      #remote port
-
 #'myip'and 'myport' must be changed depend on your System.
 myip = '192.168.0.72'
 myport = 10200
@@ -106,7 +95,7 @@ rs.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 rs.bind((myip, myport))
 rs.listen(True)
 
-#ss.send('request/'+str(myport))
+
 while True:
     try:
         conn, addr = rs.accept()
