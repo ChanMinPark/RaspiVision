@@ -71,9 +71,6 @@ def operation_proc():
     #To do
     print("Begin operation process.")
 
-    ss = socket.socket()
-    ss.connect((serverip, serverport))
-
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
 
@@ -84,7 +81,14 @@ def operation_proc():
             ret, frame = cam.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
+            if len(faces) == 0:
+                print "Look at the Camera squarely and then Restart the program."
+            else:
+                print "took a picture"
             for (x,y,w,h) in faces:
+                ss = socket.socket()
+                ss.connect((serverip, serverport))
+                
                 resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
                 
                 print("Encoding...")
