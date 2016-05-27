@@ -57,7 +57,8 @@ def register_proc(name):
                 ss.send(metaMsg)
                 ss.send(stringData)
                 count = count+1
-            del(cam)
+            #del(cam)
+            cv2.VideoCapture.release()
             time.sleep(1)
         except KeyboardInterrupt:
             ss.close()
