@@ -8,10 +8,10 @@ import time
 
 # This variables must be changed depend on your System.
 face_cascade = cv2.CascadeClassifier("/home/pi/Desktop/opencv-3.0.0/data/haarcascades/haarcascade_frontalface_alt.xml")
-serverip = '192.168.0.55'
+serverip = '192.168.0.72'
 serverport = 10200
 # 'ip'and 'port' must be changed depend on your System.
-myip = '192.168.0.72'
+myip = '192.168.0.81'
 myport = 10100  #My Receive port
 
 def recv_data(sock, count):
