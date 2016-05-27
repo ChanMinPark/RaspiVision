@@ -34,11 +34,17 @@ def register_proc(name):
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FPS, 7)
 
-    for count in range(10):
+    #for count in range(10):
+    count = 0
+    while count < 10:
         try:
             ret, frame = cam.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
+            if len(faces) == 0:
+                print "Look at the Camera squarely."
+            else:
+                print "took a picture #"+str(count+1)
             for (x,y,w,h) in faces:
                 resized_image = cv2.resize(frame[y:y+h,x:x+w], (273, 273))
                 
@@ -50,6 +56,7 @@ def register_proc(name):
                 
                 ss.send(metaMsg)
                 ss.send(stringData)
+                count = count+1
             
             time.sleep(1)
         except KeyboardInterrupt:
