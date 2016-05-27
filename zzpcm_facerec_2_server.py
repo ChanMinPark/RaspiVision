@@ -75,13 +75,13 @@ def checkFace(origin_img):
     subject_dictionary = dict(zip(list_of_labels, subject_names))
     model.compute(X,y)
 
-    #gray = cv2.cvtColor(origin_img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(origin_img, cv2.COLOR_BGR2GRAY)
     #faces = face_cascade.detectMultiScale(gray, 1.2, 3)
 
     #for (x,y,w,h) in faces:        
         #sampleImage = gray[y:y+h, x:x+w]
         #sampleImage = cv2.resize(sampleImage, (256,256))
-    sampleImage = cv2.resize(origin_img, (256,256))
+    sampleImage = cv2.resize(gray, (256,256))
 
         
     [ predicted_label, generic_classifier_output] = model.predict(sampleImage)
