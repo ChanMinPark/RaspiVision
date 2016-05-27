@@ -38,7 +38,8 @@ def register_proc(name):
             cam = cv2.VideoCapture(0)
             cam.set(cv2.CAP_PROP_FPS, 7)
             
-            ret, frame = cam.read()
+            #ret, frame = cam.read()
+            ret, frame = cam.retrieve()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.2, 3)
             if len(faces) == 0:
@@ -58,7 +59,6 @@ def register_proc(name):
                 ss.send(stringData)
                 count = count+1
             #del(cam)
-            cv2.VideoCapture.release()
             time.sleep(1)
         except KeyboardInterrupt:
             ss.close()
